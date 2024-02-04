@@ -1,0 +1,19 @@
+.contenedor-nosotros {
+    @include tablet {
+        @include grid(2, 2rem)
+    }
+
+    
+    
+}
+.nosotros-texto blockquote {
+    margin: 3rem 0 0;
+
+    @include tablet {
+        margin: 0;
+    }
+    
+    font-size: 2.4rem;
+    font-weight: $black;
+    text-align: left;
+}

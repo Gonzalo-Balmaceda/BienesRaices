@@ -2,11 +2,11 @@
         <h1>Administrador de Bienes Raices</h1>
 
         <?php 
-            if($mensaje) {
-                $mensaje = mostrarMensaje(intval($resultado));
+            if($resultado) {
+                $resultado = mostrarMensaje(intval($resultado));
             
-            if($mensaje) { ?>
-                <P class="alerta exito"> <?php echo sanitizar($mensaje); ?></P>
+            if($resultado) { ?>
+                <P class="alerta exito"> <?php echo sanitizar($resultado); ?></P>
         <?php }
             } ?>
             

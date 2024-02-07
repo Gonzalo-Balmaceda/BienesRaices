@@ -55,3 +55,18 @@ function mostrarMensaje($codigo) {
 
     return $mensaje;
 }
+
+// Esta función hace que valide el id de una propiedad y si no es un id válido redirecciona.
+function validarORedireccionar(string $url) {
+
+        // Validamos el ID de la propiedad a actualizar.
+        $id = $_GET['id']; // Tomamos el ID de la URL.
+        $id = filter_var($id, FILTER_VALIDATE_INT);
+    
+        // Verificamos si hay un ID.
+        if(!$id) {
+            header("Location: $url"); // De no haberlo redireccionamos.
+        }
+
+        return $id;
+}

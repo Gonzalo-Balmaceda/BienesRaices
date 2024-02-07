@@ -53,5 +53,3 @@
     </select>
     
 </fieldset>
-
-    <input type="submit" value="Crear Propiedad" class="boton boton-verde">

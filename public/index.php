@@ -11,6 +11,7 @@
     $router->get('/propiedades/crear', [PropiedadController::class, 'crear']);
     $router->post('/propiedades/crear', [PropiedadController::class, 'crear']);
     $router->get('/propiedades/actualizar', [PropiedadController::class, 'actualizar']);
+    $router->post('/propiedades/actualizar', [PropiedadController::class, 'actualizar']);
 
     // Verifica que existe la URL ingresada y que tenga una función asociada, caso contratario muestra un error.
     $router->comprobarRutas();

@@ -160,7 +160,7 @@ class ActiveRecord {
 
     // Busca un registro por su ID.
     public static function find($id) {
-        $query = "SELECT * FROM ". static::$tabla . " WHERE id = $id";
+        $query = "SELECT * FROM ". static::$tabla . " WHERE id = $id"; // Realizamos la consulta
 
         $resultado = self::consultarSQL($query);
 

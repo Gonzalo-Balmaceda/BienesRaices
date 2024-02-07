@@ -19,7 +19,7 @@ class PropiedadController
         // Muestra mensaje condicional.
         $resultado = $_GET['resultado'] ?? null;
 
-        $router->render('propiedades/admin', [
+        $router->render('/propiedades/admin', [
             "propiedades" => $propiedades, // Mostramos las propiedades obtenidas.
             "resultado" => $resultado,
         ]);
@@ -75,15 +75,63 @@ class PropiedadController
         }
 
 
-        $router->render('propiedades/crear', [
+        $router->render('/propiedades/crear', [
             'propiedad' => $propiedad,
             'vendedores' => $vendedores,
             'errores' => $errores,
         ]);
     }
 
-    public static function actualizar()
-    {
-        echo 'Actualizando';
+    public static function actualizar(Router $router) {
+        
+        $id = validarORedireccionar('/admin'); // Pasamos la URL a donde redireccionará en el caso del que el ID no sea válido.
+
+        $propiedad = Propiedad::find($id); // Obtenemos la propiedad a actualizar por su ID.
+
+        $vendedores = Vendedor::all(); // Obtenemos todos los vendedores.
+
+        // Arreglo con mensajes de errores.
+        $errores = Propiedad::getErrores();
+
+          // Ejecuta el código después de que el usuario envie el formulario.
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            // Asignar los atributos actualizados.
+            $args = $_POST['propiedad'];
+
+            $propiedad->sincronizar($args);
+
+            // Validación
+            $errores = $propiedad->validar();
+
+            /** Subida de archivos **/
+
+            // Generar un nombre unico para las imagenes. 
+            $nombreImg = md5(uniqid(rand(), true))  . '.jpg';
+
+            // Setear la imagen.
+            // Realiza el size de la imagen con Intervention.
+            if($_FILES['propiedad']['tmp_name']['imagen']) { // Verificamos que haiga una imagen.
+                $image = Image::make($_FILES['propiedad']['tmp_name']['imagen'])->fit(800, 600);
+                $propiedad->setImagen($nombreImg);
+            }
+
+            // Revisar que el arreglo de errores este vacio.
+            if(empty($errores)) {
+                
+                if($_FILES['propiedad']['tmp_name']['imagen']) {
+                    // Almacenar la imagen.
+                    $image->save(CARPETA_IMAGENES . $nombreImg);
+                }
+
+                $propiedad->guardar();
+            };   
+        }
+
+        $router->render('/propiedades/actualizar', [
+            'propiedad' => $propiedad,
+            'errores' => $errores,
+            'vendedores' =>$vendedores,
+        ]);
     }
 }

@@ -29,6 +29,7 @@ function sanitizar($html) : string {
     return $sanitizado;
 }
 
+// Función que valida si lo seleccionada es una propiedad o un vendedor
 function validarTipoContenido($tipo) {
     $tipos = ["propiedad", "vendedor"];
 

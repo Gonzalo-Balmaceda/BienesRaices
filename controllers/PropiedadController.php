@@ -134,4 +134,27 @@ class PropiedadController
             'vendedores' =>$vendedores,
         ]);
     }
+
+    public static function eliminar() {
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $id = $_POST['id']; // Tomamos el id de la propiedad a eliminar
+            $id = filter_var($id, FILTER_VALIDATE_INT); // Validamos de que el ID sea un num entero.
+
+            if($id) {
+                $tipo = $_POST['tipo']; 
+                
+                if(validarTipoContenido($tipo)) {
+
+                    // Eliminamos la propiedad
+                    if($tipo === 'propiedad') {
+                        $propiedad = Propiedad::find($id);
+                        $propiedad->eliminar();
+                    }
+
+                }
+            }
+        }
+    }
 }

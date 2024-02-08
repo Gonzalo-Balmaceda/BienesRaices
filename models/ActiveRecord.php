@@ -76,9 +76,9 @@ class ActiveRecord {
     public function eliminar() {
         // Eliminar el archivo.
         $query = "DELETE FROM " . static::$tabla . " WHERE id = " . self::$db->escape_string($this->id);
-        $restultado = self::$db->query($query);
+        $resultado = self::$db->query($query);
 
-        if($restultado) {
+        if($resultado) {
             // Elimina la imagen.
             $this->eliminarImagen();
 

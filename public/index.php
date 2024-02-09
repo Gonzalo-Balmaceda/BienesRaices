@@ -3,6 +3,7 @@
 
     use MVC\Router; // Usamos el router creado.
     use Controllers\PropiedadController;
+    use Controllers\VendedoresController;
 
     $router = new Router();
 
@@ -13,6 +14,13 @@
     $router->get('/propiedades/actualizar', [PropiedadController::class, 'actualizar']);
     $router->post('/propiedades/actualizar', [PropiedadController::class, 'actualizar']);
     $router->post('/propiedades/eliminar', [PropiedadController::class, 'eliminar']);
+
+    // Funciones y URL para los vendedores.
+    $router->get('/vendedores/crear', [VendedoresController::class, 'crear']);
+    $router->post('/vendedores/crear', [VendedoresController::class, 'crear']);
+    $router->get('/vendedores/actualizar', [VendedoresController::class, 'actualizar']);
+    $router->post('/vendedores/actualizar', [VendedoresController::class, 'actualizar']);
+    $router->post('/vendedores/eliminar', [VendedoresController::class, 'eliminar']);
 
     // Verifica que existe la URL ingresada y que tenga una función asociada, caso contratario muestra un error.
     $router->comprobarRutas();

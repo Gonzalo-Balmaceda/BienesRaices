@@ -16,12 +16,15 @@ class PropiedadController
         // Traemos las propiedades de la DB.
         $propiedades = Propiedad::all();
 
+        $vendedores = Vendedor::all();
+
         // Muestra mensaje condicional.
         $resultado = $_GET['resultado'] ?? null;
 
         $router->render('/propiedades/admin', [
             "propiedades" => $propiedades, // Mostramos las propiedades obtenidas.
             "resultado" => $resultado,
+            'vendedores' => $vendedores,
         ]);
     }
 

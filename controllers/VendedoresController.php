@@ -32,8 +32,38 @@ use MVC\Router;
         ]);
     }
 
-    public static function actualizar() {
-        echo "Actualizando vendedor";
+    public static function actualizar(Router $router) {
+
+        // Obtenemos los errores.
+        $errores = Vendedor::getErrores();
+
+        // Validamos el ID.
+        $id = validarORedireccionar('/admin');
+
+        // Buscamos al vendedor por el ID.
+        $vendedor = Vendedor::find($id);
+
+        // Envio del formualario para actualizar un vendedor.
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            // Asignar los valores nuevos.
+            $args = $_POST['vendedor'];
+
+            // Sincroniza el objeto en memoria con los nuevos cambios.
+            $vendedor->sincronizar($args);
+
+            // Validamos para que no haiga errores.
+            $errores = $vendedor->validar();
+
+            if(empty($errores)) {
+                $vendedor->guardar(); // Guardamos los datos actualizados
+            }
+        }
+
+        $router->render('vendedores/actualizar', [
+            "errores" => $errores,
+            "vendedor" => $vendedor,
+        ]);
     }
 
     public static function eliminar() {

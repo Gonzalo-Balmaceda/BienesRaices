@@ -10,7 +10,7 @@
     <?php endforeach; ?>
 
 
-    <form class="formulario" method="POST">
+    <form class="formulario" method="POST" action="/vendedores/crear">
 
         <?php include 'formulario.php' ?>
         <input type="submit" value="Registar Vendedor(a)" class="boton boton-verde">

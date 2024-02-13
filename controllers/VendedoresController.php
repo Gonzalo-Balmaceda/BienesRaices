@@ -67,6 +67,22 @@ use MVC\Router;
     }
 
     public static function eliminar() {
-        echo "Eliminando vendedor";
+        
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            // Valida el ID.
+            $id = $_POST['id'];
+            $id = filter_var($id, FILTER_VALIDATE_INT);
+
+            if($id) {
+                // Valida el tipo a eliminar.
+                $tipo = $_POST['tipo'];
+
+                if(validarTipoContenido($tipo)) {
+                    $vendedor = Vendedor::find($id);
+                    $vendedor->eliminar();
+                }
+            }
+        }
     }
  }

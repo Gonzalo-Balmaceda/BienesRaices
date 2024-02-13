@@ -4,6 +4,7 @@
     use MVC\Router; // Usamos el router creado.
     use Controllers\PropiedadController;
     use Controllers\VendedoresController;
+    use Controllers\PaginasController;
 
     $router = new Router();
 
@@ -21,6 +22,9 @@
     $router->get('/vendedores/actualizar', [VendedoresController::class, 'actualizar']);
     $router->post('/vendedores/actualizar', [VendedoresController::class, 'actualizar']);
     $router->post('/vendedores/eliminar', [VendedoresController::class, 'eliminar']);
+
+    // Funciones y URL para las paginas estáticas.
+    $router->get('/', [PaginasController::class, 'index']);
 
     // Verifica que existe la URL ingresada y que tenga una función asociada, caso contratario muestra un error.
     $router->comprobarRutas();

@@ -8,7 +8,8 @@
 
     $router = new Router();
 
-    // Vamos asociando las funciones que se ejecutaran en las distintas URL.
+    // ZONA PRIVADA.
+    // Funciones y URL para las propiedades
     $router->get('/admin', [PropiedadController::class, 'index']); // Pasamos la ubicación en donde están las funciones y después pasamos la función para la ruta.
     $router->get('/propiedades/crear', [PropiedadController::class, 'crear']);
     $router->post('/propiedades/crear', [PropiedadController::class, 'crear']);
@@ -23,8 +24,16 @@
     $router->post('/vendedores/actualizar', [VendedoresController::class, 'actualizar']);
     $router->post('/vendedores/eliminar', [VendedoresController::class, 'eliminar']);
 
-    // Funciones y URL para las paginas estáticas.
+    // ZONA PÚBLICA
+    // Funciones y URL para las paginas sin autenticación.
     $router->get('/', [PaginasController::class, 'index']);
+    $router->get('/nosotros', [PaginasController::class, 'nosotros']);
+    $router->get('/propiedades', [PaginasController::class, 'propiedades']);
+    $router->get('/propiedad', [PaginasController::class, 'propiedad']);
+    $router->get('/blog', [PaginasController::class, 'blog']);
+    $router->get('/entrada', [PaginasController::class, 'entrada']);
+    $router->get('/contacto', [PaginasController::class, 'contacto']); 
+    $router->post('/contacto', [PaginasController::class, 'contacto']);
 
     // Verifica que existe la URL ingresada y que tenga una función asociada, caso contratario muestra un error.
     $router->comprobarRutas();

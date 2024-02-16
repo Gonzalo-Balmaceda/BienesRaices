@@ -14,7 +14,7 @@ class PaginasController {
         // Esta variable al ser 'true' agregará la clase 'inicio en el layout y asi se podra ver todo el inicio de la página
         $inicio = true; 
         
-        $router->render('/paginas/index', [
+        $router->render('paginas/index', [
             'propiedades' => $propiedades,
             'inicio' => $inicio,
         ]);
@@ -22,14 +22,14 @@ class PaginasController {
 
     public static function nosotros(Router $router) {
         
-        $router->render('/paginas/nosotros', []);
+        $router->render('paginas/nosotros', []);
     }
 
     public static function propiedades(Router $router) {
 
         $propiedades = Propiedad::all();
         
-        $router->render('/paginas/propiedades', [
+        $router->render('paginas/propiedades', [
             'propiedades' => $propiedades,
         ]);
     }
@@ -39,21 +39,27 @@ class PaginasController {
         $id = validarORedireccionar('/propiedades'); // Validamos el ID.
         $propiedad = Propiedad::find($id); // Buscamos la propiedad por su ID.
         
-        $router->render('/paginas/propiedad', [
+        $router->render('paginas/propiedad', [
             'propiedad' => $propiedad,
         ]);
     }
 
     public static function blog(Router $router) {
         
-        $router->render('/paginas/blog', []);
+        $router->render('paginas/blog', []);
     }
 
-    public static function entrada() {
-        echo "Desde entrada";
+    public static function entrada(Router $router) {
+        
+        $router->render('paginas/entrada', []);
     }
     
-    public static function contacto() {
-        echo "Desde contacto";
+    public static function contacto(Router $router) {
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            debuguear($_POST);
+        }
+        
+        $router->render('paginas/contacto', []);
     }
 }

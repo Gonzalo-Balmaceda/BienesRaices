@@ -11,7 +11,7 @@
         </div>
 
         <div class="texto-entrada">
-            <a href="entrada.php">
+            <a href="/entrada">
                 <h4>Terraza en el techo de tu casa</h4>
                 <p>Escrito: <span> 02/12/2023 </span> por: <span>Admin</span></p>
                 <p>Consejos para contruir una terraza en el techo de tu casa con los mejores

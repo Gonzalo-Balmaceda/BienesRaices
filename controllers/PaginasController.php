@@ -58,6 +58,8 @@ class PaginasController {
     public static function contacto(Router $router) {
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $respuestas = $_POST['contacto']; // Guardo el arreglo contacto y asi obtener el contenido de todos los campos del formulario.
             
             // Creo una instancia de PHPMailer.
             $mail = new PHPMailer();
@@ -81,7 +83,18 @@ class PaginasController {
             $mail->CharSet = 'UTF-8';
 
             // Contenido.
-            $contenido = '<html> <p>Tienes un nuevo mensaje</p> </html>';
+            $contenido = '<html>';
+            $contenido .= '<p>Tienes un nuevo mensaje</p>';
+            $contenido .= '<p>Nombre: ' . $respuestas['nombre'] . ' </p>';
+            $contenido .= '<p>Email: ' . $respuestas['email'] . ' </p>';
+            $contenido .= '<p>Teléfono: ' . $respuestas['telefono'] . ' </p>';
+            $contenido .= '<p>Mensaje: ' . $respuestas['mensaje'] . ' </p>';
+            $contenido .= '<p>Comprar o Vender: ' . $respuestas['tipo'] . ' </p>';
+            $contenido .= '<p>Precio o presupuesto: ' . $respuestas['precio'] . ' </p>';
+            $contenido .= '<p>Como prefiere que lo contacten: ' . $respuestas['contacto'] . ' </p>';
+            $contenido .= '<p>Fecha: ' . $respuestas['fecha'] . ' </p>';
+            $contenido .= '<p>Hora: ' . $respuestas['hora'] . ' </p>';
+            $contenido .= '</html>';
 
             $mail->Body = $contenido;
             $mail->AltBody = 'Texto alternativo sin HTML';

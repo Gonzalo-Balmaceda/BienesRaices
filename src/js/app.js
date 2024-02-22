@@ -44,6 +44,9 @@ function eventListeners() {
     const mobileMenu = document.querySelector(".mobile-menu");
 
     mobileMenu.addEventListener("click", nevagacionResposive);
+
+    const metodoContacto = document.querySelectorAll('input[name="contacto[contacto]"]');
+    console.log(metodoContacto);
 }
 
 function nevagacionResposive()  {
